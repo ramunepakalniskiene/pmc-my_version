@@ -10,17 +10,34 @@ public class ProductService {
     @Autowired
     public ProductRepository productRepository;
 
-    public List<Product> findAllProducts() {
+    public List<Product> getAllProducts() {
         return productRepository.findAll();
     }
 
-    public void addProduct(Product product) {
-        productRepository.saveAndFlush(product);
 
+    public Product createProduct(Product product) throws Exception {
+        if (product.getName().isEmpty() || product.getPrice() == 0 ||
+                product.getCategory().toString() == null)
+            throw new Exception("All lines should be filled in, please re-check");
+        else {
+          productRepository.saveAndFlush(product);
+        }
+        return product;
     }
+
+
+
+
+
+
+
+
 
     private void findProduct(Long id) {
         productRepository.getById(id);
     }
 
+    public void deleteProduct(Long id) {
+        productRepository.deleteById(id);
+    }
 }
