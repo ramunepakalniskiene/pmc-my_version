@@ -11,6 +11,7 @@ public class ProductService {
     public ProductRepository productRepository;
 
     public List<Product> getAllProducts() {
+
         return productRepository.findAll();
     }
 
@@ -20,24 +21,20 @@ public class ProductService {
                 product.getCategory().toString() == null)
             throw new Exception("All lines should be filled in, please re-check");
         else {
-          productRepository.saveAndFlush(product);
+
+            product.setQuantity(product.getInitial_quantity());
+            productRepository.saveAndFlush(product);
         }
         return product;
     }
 
 
-
-
-
-
-
-
-
     private void findProduct(Long id) {
-        productRepository.getById(id);
+        productRepository.findById(id);
     }
 
     public void deleteProduct(Long id) {
+
         productRepository.deleteById(id);
     }
 }

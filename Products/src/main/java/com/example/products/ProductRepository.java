@@ -1,12 +1,24 @@
 package com.example.products;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
+import java.util.Optional;
 
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
+
     void deleteById(Long id);
+
+    @Override
+    void deleteAllById(Iterable<? extends Long> longs);
+
+    @Override
+    List<Product> findAllById(Iterable<Long> longs);
+
+
+    Optional<Product> findById(Long id);
 
 }

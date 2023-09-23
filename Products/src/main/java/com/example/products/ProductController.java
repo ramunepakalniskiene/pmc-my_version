@@ -1,25 +1,26 @@
 package com.example.products;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+@Controller
 public class ProductController {
+    @Autowired
     private ProductService productService;
 
-    public ProductController(ProductService productService) {
-        this.productService = productService;
-    }
 
-    @GetMapping("/product-list")
+    @GetMapping("/")
     public String displayUserList(@RequestParam(required = false) String message,
                                   @RequestParam(required = false) String error,
                                   Model model) {
         model.addAttribute("message", message);
         model.addAttribute("error", error);
-        model.addAttribute("productList", this.productService.getAllProducts());
+        model.addAttribute("productList", productService.getAllProducts());
         return "productList";
     }
 
