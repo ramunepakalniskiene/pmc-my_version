@@ -12,20 +12,21 @@
 
   <section class="container">
     <h3> Sell product </h3>
-    <form action="/sell-product/{id}" method="post">
 
-      <div class="input-group mt-2">
+    <form th:action="${'/sell-product/{id}'}" method="post">
+
+    <div class="input-group mt-2">
         <label class="input-group-text">Quantity</label>
-        <input class="form-control" name="quantity" type="text">
-      </div>
+         <input class="form-control" th:field="${quantity}" type="text" name="quantityToSell">
+    </div>
+          <div class="input-group mt-2">
+      <button class="btn btn-primary" type="submit">Sell product</button>
+    </div>
+  </form>
 
-      <div class="input-group mt-2">
-        <button class="btn btn-primary" type="submit">Sell product </button>
-      </div>
-    </form>
   </section>
 
-
 </main>
+<footer th:replace="~{fragments/footer.html :: footer}"></footer>
 </body>
 </html>

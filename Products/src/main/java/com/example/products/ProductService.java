@@ -44,9 +44,8 @@ public class ProductService {
     }
 
     public void updateProductQuantity(Product product) {
-        product.setQuantity(product.getQuantity() - 1);
+        product.setQuantity(product.getQuantity());
         productRepository.saveAndFlush(product);
-
     }
 
     public Product updateProduct(Product product) throws Exception {
@@ -54,10 +53,9 @@ public class ProductService {
         for (Product currentProduct : productRepository.findAll()) {
 
             if (currentProduct.getId().equals(product.getId())) {
-                currentProduct.setDescription(product.getDescription());
                 currentProduct.setName(product.getName());
                 currentProduct.setPrice(product.getPrice());
-                currentProduct.setQuantity(product.getQuantity());
+                currentProduct.setQuantity(product.getInitial_quantity());
                 currentProduct.setCategory(product.getCategory());
                 return currentProduct;
             }
