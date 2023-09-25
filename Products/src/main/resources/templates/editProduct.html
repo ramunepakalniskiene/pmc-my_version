@@ -7,27 +7,27 @@
 
 </head>
 <body>
-<header th:replace="fragments/header.html :: shared_header"> </header>
+<header th:replace="~{fragments/header.html :: shared_header}"></header>
 
 <main>
   <section class="container">
     <h3> Edit Product </h3>
-    <form action="/edit-product/{id}" method="post">
+    <form action="/edit-product/id" method="post">
       <div class="input-group mt-2">
         <label class="input-group-text">Name</label>
-        <input class="form-control" name="name" type="text">
+        <input class="form-control" name="name" th:value="${productItem.getName()}" type="text">
       </div>
       <div class="input-group mt-2">
         <label class="input-group-text">Price</label>
-        <input class="form-control" name="price" type="text">
+        <input class="form-control" th:field="price" type="text">
       </div>
       <div class="input-group mt-2">
         <label class="input-group-text">Quantity</label>
-        <input class="form-control" name="quantity" type="text">
+        <input class="form-control" th:field="quantity" type="text">
       </div>
       <div class="input-group mt-2">
         <label class="input-group-text">Category </label>
-        <select class="form-control" name = "category">
+        <select class="form-control" th:field="category">
           <option value="ACCESSORIES">Accessories</option>
           <option value="CLOTHES">Clothes</option>
           <option value="SHOES">Shoes</option>
@@ -39,5 +39,6 @@
     </form>
   </section>
 </main>
+<footer th:replace="~{fragments/footer.html :: footer}"></footer>
 </body>
 </html>

@@ -7,7 +7,7 @@
 
 </head>
 <body>
-<header th:replace="fragments/header.html :: shared_header"> </header>
+<header th:replace="~{fragments/header.html :: shared_header}"></header>
 
 <main>
     <section class="container">
@@ -39,5 +39,6 @@
         </form>
     </section>
 </main>
+<footer th:replace="~{fragments/footer.html :: footer}"></footer>
 </body>
 </html>>
