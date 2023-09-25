@@ -44,7 +44,7 @@ public class ProductService {
     }
 
     public void updateProductQuantity(Product product) {
-        product.setQuantity(product.getQuantity());
+        product.setQuantity(product.getQuantity()-1);
         productRepository.saveAndFlush(product);
     }
 

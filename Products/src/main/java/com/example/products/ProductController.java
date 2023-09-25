@@ -53,14 +53,14 @@ public class ProductController {
         }
     }
 
-    @PostMapping("/sell-product/{id}")
-    public String sellProduct(@PathVariable Long id, @RequestParam int quantityToSell, Model model) {
+    @GetMapping("/sell-product/{id}")
+    public String sellProduct(@PathVariable Long id, Model model) {
         try {
             Product sellProduct = productService.findProductById(id);
-             if (sellProduct.getQuantity() >= quantityToSell) {
-                sellProduct.setQuantity(sellProduct.getQuantity() - quantityToSell);
+             if (sellProduct.getQuantity() > 0) {
+             //   sellProduct.setQuantity(sellProduct.getQuantity() - quantityToSell);
                 productService.updateProductQuantity(sellProduct);
-                 model.addAttribute("quantityToSell",0);
+               //  model.addAttribute("quantityToSell",0);
                 return "redirect:/?message=PRODUCT_SOLD_SUCCESS";
             } else {
                 return "redirect:/?message=PRODUCT_SOLD_FAILED&error=Not enough quantity to sell";
