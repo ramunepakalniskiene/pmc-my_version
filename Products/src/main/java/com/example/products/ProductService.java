@@ -29,12 +29,42 @@ public class ProductService {
     }
 
 
-    private void findProduct(Long id) {
-        productRepository.findById(id);
+    public Product findProductById(Long id) throws Exception {
+
+        for (Product product : productRepository.findAll()) {
+            if (product.getId().equals(id))
+                return productRepository.findById(id).get();
+        }
+        throw new Exception("Product not found");
+
     }
 
     public void deleteProduct(Long id) {
 
         productRepository.deleteById(id);
+    }
+
+    public void updateProductQuantity(Product product) {
+        product.setQuantity(product.getQuantity() - 1);
+        productRepository.saveAndFlush(product);
+
+    }
+
+    public Product updateProduct(Product product) throws Exception {
+
+        for (Product currentProduct : productRepository.findAll()) {
+
+            if (currentProduct.getId().equals(product.getId())) {
+                currentProduct.setDescription(product.getDescription());
+                currentProduct.setName(product.getName());
+                currentProduct.setPrice(product.getPrice());
+                currentProduct.setQuantity(product.getQuantity());
+                currentProduct.setCategory(product.getCategory());
+                return currentProduct;
+            }
+        }
+
+        throw new Exception("product not found!");
+
     }
 }
