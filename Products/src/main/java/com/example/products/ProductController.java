@@ -25,6 +25,17 @@ public class ProductController {
         return "productList";
     }
 
+
+    @GetMapping("/sort-product")
+    public String displayUserListSortedByName(@RequestParam(required = false) String message,
+                                  @RequestParam(required = false) String error,
+                                  Model model) {
+        model.addAttribute("message", message);
+        model.addAttribute("error", error);
+        model.addAttribute("productList", productService.getProductsSortedByName());
+        return "productList";
+    }
+
     @GetMapping("/add-product")
     public String displayAddProductPage() {
         return "addProduct";
@@ -85,14 +96,17 @@ public class ProductController {
     @PostMapping("/edit/{id}")
     public String editProduct(@PathVariable Long id, Product product) {
         try {
-            System.out.println(product);
-            productService.findProductById(id);
             product.setId(id);
             productService.updateProduct(product);
             return "redirect:/?message=PRODUCT_EDITED_SUCCESSFULLY";
         } catch (Exception exception) {
             return "redirect:/?message=PRODUCT_EDIT_FAILED&error=" + exception.getMessage();
         }
+    }
+    @GetMapping(value = "filters")
+    public String findProductByName(@RequestParam (value = "name", required = true) String name, Model model) {
+        model.addAttribute("search", productService.findProductByName(name));
+        return "filters";
     }
 
 }

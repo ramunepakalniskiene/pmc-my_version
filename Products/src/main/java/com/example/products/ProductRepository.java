@@ -12,13 +12,13 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     void deleteById(Long id);
 
-    @Override
-    void deleteAllById(Iterable<? extends Long> longs);
+
 
     @Override
     List<Product> findAllById(Iterable<Long> longs);
 
 
     Optional<Product> findById(Long id);
+    List<Product> findByName(String name);
 
 }

@@ -3,7 +3,9 @@ package com.example.products;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductService {
@@ -14,6 +16,19 @@ public class ProductService {
 
         return productRepository.findAll();
     }
+
+    public List<Product> getProductsSortedByName() {
+        List<Product> list = productRepository.findAll();
+        return list.stream().sorted(Comparator.comparing(Product::getName)).collect(Collectors.toList());
+
+    }
+
+    public List<Product> getProductsSortedByPrice() {
+        List<Product> list = productRepository.findAll();
+        return list.stream().sorted(Comparator.comparing(Product::getPrice)).collect(Collectors.toList());
+
+    }
+
 
 
     public Product createProduct(Product product) throws Exception {
@@ -55,13 +70,19 @@ public class ProductService {
             if (currentProduct.getId().equals(product.getId())) {
                 currentProduct.setName(product.getName());
                 currentProduct.setPrice(product.getPrice());
-                currentProduct.setQuantity(product.getInitial_quantity());
+                currentProduct.setQuantity(product.getQuantity());
                 currentProduct.setCategory(product.getCategory());
+                productRepository.saveAndFlush(currentProduct);
                 return currentProduct;
             }
         }
 
         throw new Exception("product not found!");
+
+    }
+
+    public Product findProductByName(String name) {
+        return productRepository.findByName(name).get(0);
 
     }
 }
