@@ -32,7 +32,7 @@ public class ProductController {
                                   Model model) {
         model.addAttribute("message", message);
         model.addAttribute("error", error);
-        model.addAttribute("productList", productService.getProductsSortedByCategory());
+        model.addAttribute("productList", productService.getProductSortedByPrice());
 
         return "productList";
     }

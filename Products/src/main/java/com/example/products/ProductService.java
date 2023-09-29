@@ -3,7 +3,7 @@ package com.example.products;
 import com.example.products.comparators.ProductComparatorByCategory;
 import com.example.products.comparators.ProductComparatorByDescription;
 import com.example.products.comparators.ProductComparatorByName;
-import com.example.products.comparators.ProductComparatorByQuantity;
+import com.example.products.comparators.ProductComparatorByPrice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,11 +44,12 @@ public class ProductService {
     }
     public List<Product> getProductSortedByPrice(){
         List<Product> listByPrice=productRepository.findAll();
+        Collections.sort(listByPrice, new ProductComparatorByPrice());
         return listByPrice;
     }
     public List<Product> getProductSortedByQuantity(){
         List<Product> listByQuantity=productRepository.findAll();
-        Collections.sort(listByQuantity, new ProductComparatorByQuantity());
+        Collections.sort(listByQuantity, new ProductComparatorByPrice());
         return listByQuantity;
     }
 
