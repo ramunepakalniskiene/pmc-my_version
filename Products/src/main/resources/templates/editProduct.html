@@ -19,17 +19,24 @@
         <input class = "form-control" name ="name" type="text" th:value= "${productItem.getName()}">
 
       </div>
+
+      <div class="input-group mt-2">
+      <label class="input-group-text">Description</label>
+      <input class = "form-control" name ="description" type="text" th:value= "${productItem.getDescription()}">
+      </div>
+
       <div class="input-group mt-2">
         <label class="input-group-text">Price</label>
         <input class = "form-control" name ="price" type="text" th:value= "${productItem.getPrice()}">
       </div>
+
       <div class="input-group mt-2">
         <label class="input-group-text">Quantity</label>
         <input class = "form-control" name ="quantity" type="text" th:value= "${productItem.getQuantity()}">
       </div>
+
       <div class="input-group mt-2">
         <label class="input-group-text">Category </label>
-
 
         <select class = "form-control" name="category" th:value="${productItem.getCategory().toString()}">
           <option value="ACCESSORIES">Accessories</option>
@@ -41,6 +48,7 @@
       <div class="input-group mt-2">
         <button class="btn btn-primary" type="submit">Edit product </button>
       </div>
+
     </form>
   </section>
 </main>

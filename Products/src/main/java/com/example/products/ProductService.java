@@ -69,6 +69,7 @@ public class ProductService {
 
             if (currentProduct.getId().equals(product.getId())) {
                 currentProduct.setName(product.getName());
+                currentProduct.setDescription(product.getDescription());
                 currentProduct.setPrice(product.getPrice());
                 currentProduct.setQuantity(product.getQuantity());
                 currentProduct.setCategory(product.getCategory());

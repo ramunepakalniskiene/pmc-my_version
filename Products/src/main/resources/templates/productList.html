@@ -22,7 +22,7 @@
                 <div class="card">
                     <div>
 
-                        <img th:src="${(product.getCategory().toString()=='SHOES') ? 'https://img.freepik.com/free-vector/special-discount-background_23-2147819178.jpg?w=740&t=st=1695821845~exp=1695822445~hmac=eaa8ea908006eb62ee68123a1374ea095b58c7b45b641c7f033cd7f126717cd4' : 'https://img.freepik.com/free-vector/special-discount-background_23-2147819178.jpg?w=740&t=st=1695821845~exp=1695822445~hmac=eaa8ea908006eb62ee68123a1374ea095b58c7b45b641c7f033cd7f126717cd4'}"
+                        <img th:src="${product.getCategory().toString()=='SHOES' ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBjtbXwRSSkGsrENwzHllHkrZLBlUls3ulGg&usqp=CAU': (product.getCategory().toString()=='CLOTHES' ? ' https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiBokZRM8Kr3I7p3pUQJV953oBN1D8D5tWrbjgSTsS8epgS4PmtO-xJfrNIa1t4K9Yhas&usqp=CAU' : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3afRWdIOsYde1JcstTAaSsLOM9Ajrr-uIOQ&usqp=CAU)')}"
                              class="card-img-top" alt="..."/>
 
                         <!--
@@ -34,7 +34,7 @@
 
                     <div class="card-body row ">
                         <h5 class="card-title" th:text="${product.name}"></h5>
-
+                        <p class="padding-0">Description: <span th:text="${product.getDescription()}"></span></p>
                         <p class="padding-0">Category: <span th:text="${product.getCategory()}"></span></p>
                         <p class="padding-0">Price: <span th:text="${product.getPrice()}"></span> Eur</p>
                         <p class="padding-0">Left in store: <span th:text="${product.getQuantity()}"></span></p>
