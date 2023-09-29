@@ -27,12 +27,13 @@ public class ProductController {
 
 
     @GetMapping("/sort-product")
-    public String displayUserListSortedByName(@RequestParam(required = false) String message,
+    public String displayUserListSorted(@RequestParam(required = false) String message,
                                   @RequestParam(required = false) String error,
                                   Model model) {
         model.addAttribute("message", message);
         model.addAttribute("error", error);
-        model.addAttribute("productList", productService.getProductsSortedByName());
+        model.addAttribute("productList", productService.getProductsSortedByCategory());
+
         return "productList";
     }
 
